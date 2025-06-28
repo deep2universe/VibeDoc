@@ -163,7 +163,7 @@ flowchart TD
       QUALITY --> OUTPUTS
 
       %% AI Validation Details
-      V3 -.->|"• Fix Syntax Errors<br/>• Correct Node References<br/>• Adjust Layout Issues<br/>• Validate Connections<br/>• Renders mermaid diagrams to detect errors"| V3
+      V3 -.->|"• Fix Syntax Errors<br/>• Correct Node References<br/>• Adjust Layout Issues<br/>• Validate Connections"| V3
 
       %% Human Quality Checks
       H2 -.->|"• Technical Accuracy<br/>• Tone & Style<br/>• Educational Value<br/>• Brand Consistency<br/>• AI Support"| H2

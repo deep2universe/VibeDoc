@@ -27,48 +27,64 @@ export const MermaidDiagram: React.FC<Props> = ({ chart }) => {
     }
   }, [chart]);
 
-  // Initialize mermaid for the zoomed diagram
+  // Initialize mermaid for the zoomed diagram using mermaid.render
   useEffect(() => {
     if (isZoomed && zoomElementRef.current) {
-      mermaid.initialize({
-        startOnLoad: true,
-        theme: 'default',
-        securityLevel: 'loose',
-      });
+      const renderMermaid = async () => {
+        try {
+          mermaid.initialize({
+            startOnLoad: false,
+            theme: 'default',
+            securityLevel: 'loose',
+          });
 
-      const id = `mermaid-zoom-${Math.random().toString(36).substr(2, 9)}`;
-      // Set display: flex on the mermaid container to center its content
-      zoomElementRef.current.innerHTML = `<div class="mermaid" id="${id}" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">${chart}</div>`;
+          const id = `mermaid-zoom-${Math.random().toString(36).substr(2, 9)}`;
+          
+          // Use mermaid.render to get the SVG directly
+          const { svg } = await mermaid.render(id, chart);
+          
+          // Create a container div to hold the SVG
+          const container = document.createElement('div');
+          container.style.width = '100%';
+          container.style.height = '100%';
+          container.style.display = 'flex';
+          container.style.alignItems = 'center';
+          container.style.justifyContent = 'center';
+          
+          // Insert the SVG into the container
+          container.innerHTML = svg;
+          
+          // Get the SVG element
+          const svgElement = container.querySelector('svg');
+          if (svgElement) {
+            // Make the SVG fill its container
+            svgElement.style.width = '100%';
+            svgElement.style.height = '100%';
+            svgElement.style.maxWidth = 'none';
+            svgElement.style.maxHeight = 'none';
+            
+            // Remove any fixed width/height attributes that might constrain scaling
+            svgElement.removeAttribute('width');
+            svgElement.removeAttribute('height');
+            
+            // Center the diagram content within the SVG
+            svgElement.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+          }
+          
+          // Clear the zoom element and append the container
+          if (zoomElementRef.current) {
+            zoomElementRef.current.innerHTML = '';
+            zoomElementRef.current.appendChild(container);
+          }
+        } catch (error) {
+          console.error('Error rendering mermaid diagram:', error);
+          if (zoomElementRef.current) {
+            zoomElementRef.current.innerHTML = `<div class="p-4 text-red-500 dark:text-red-400 font-mono">Error rendering diagram: ${error.message}</div>`;
+          }
+        }
+      };
       
-      // Initialize mermaid and then adjust the SVG to fill the container
-      mermaid.init(undefined, zoomElementRef.current.querySelector('.mermaid'))
-        .then(() => {
-          // Small delay to ensure the SVG is fully rendered
-          setTimeout(() => {
-            if (zoomElementRef.current) {
-              // Find the SVG element created by mermaid
-              const svg = zoomElementRef.current.querySelector('svg');
-              if (svg) {
-                // Make the SVG fill its container
-                svg.style.width = '100%';
-                svg.style.height = '100%';
-                svg.style.maxWidth = 'none';
-                svg.style.maxHeight = 'none';
-                
-                // Remove any fixed width/height attributes that might constrain scaling
-                svg.removeAttribute('width');
-                svg.removeAttribute('height');
-                
-                // Center the diagram content within the SVG
-                const viewBox = svg.getAttribute('viewBox');
-                if (viewBox) {
-                  // Keep the viewBox to maintain aspect ratio
-                  svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
-                }
-              }
-            }
-          }, 100);
-        });
+      renderMermaid();
     }
   }, [isZoomed, chart]);
 

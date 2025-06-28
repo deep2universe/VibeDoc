@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
-import { Menu, Copy, Eye, Code, Search } from 'lucide-react';
+import { Menu, Copy, Eye, Code } from 'lucide-react';
 import { useAppStore } from '../stores/appStore';
 import { MarkdownRenderer } from '../components/documentation/MarkdownRenderer';
 import { NavigationSidebar } from '../components/documentation/NavigationSidebar';
@@ -25,6 +25,9 @@ export const DocumentationPage: React.FC = () => {
   const [copied, setCopied] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  
+  // Reference to the scrollable content div
+  const contentRef = useRef<HTMLDivElement>(null);
 
   // Load documentation when component mounts or params change
   useEffect(() => {
@@ -84,6 +87,11 @@ export const DocumentationPage: React.FC = () => {
     };
     
     loadChapterContent();
+    
+    // Reset scroll position when activeFile changes
+    if (contentRef.current) {
+      contentRef.current.scrollTop = 0;
+    }
   }, [activeFile, currentRepository, setCurrentMarkdownContent]);
 
   const handleCopy = async () => {
@@ -99,6 +107,11 @@ export const DocumentationPage: React.FC = () => {
     const chapter = currentRepository.chapters.find(ch => ch.filename === filename);
     if (chapter) {
       setActiveFile(chapter.id);
+      
+      // Reset scroll position immediately
+      if (contentRef.current) {
+        contentRef.current.scrollTop = 0;
+      }
     }
   };
 
@@ -207,8 +220,11 @@ export const DocumentationPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Content */}
-        <div className="flex-1 overflow-y-auto bg-white dark:bg-gray-900">
+        {/* Content - with ref for scroll control */}
+        <div 
+          ref={contentRef}
+          className="flex-1 overflow-y-auto bg-white dark:bg-gray-900"
+        >
           <div className="max-w-4xl mx-auto p-8">
             {viewMode === 'html' ? (
               <div className="prose prose-lg dark:prose-invert max-w-none">

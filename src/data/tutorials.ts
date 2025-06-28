@@ -95,7 +95,7 @@ export const tutorials: Tutorial[] = [
       { id: 'zero_shot_prompting', title: 'Zero-Shot-Prompting', filename: '05_zero_shot_prompting_.md' },
       { id: 'few_shot_learning', title: 'Few-Shot-Learning', filename: '06_few_shot_learning_.md' },
       { id: 'gedankenketten_prompting', title: 'Gedankenketten-Prompting', filename: '07_gedankenketten_prompting_.md' },
-      { id: 'eingeschränkte_generierung', title: 'Eingeschränkte Generierung', filename: '08_eingeschränkte_generierung_.md' },
+      { id: 'eingeschraenkte_generierung', title: 'Eingeschränkte Generierung', filename: '08_eingeschraenkte_generierung_.md' },
       { id: 'rollen_prompting', title: 'Rollen-Prompting', filename: '09_rollen_prompting_.md' },
       { id: 'prompt_optimierung', title: 'Prompt-Optimierung', filename: '10_prompt_optimierung_.md' }
     ]

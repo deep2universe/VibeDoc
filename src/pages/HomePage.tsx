@@ -63,17 +63,29 @@ export const HomePage: React.FC = () => {
       if (isValid) {
         const parsed = parseGithubUrl(repoUrl);
         if (parsed) {
-          const repo: Repository = {
-            id: `${parsed.owner}/${parsed.name}`,
-            name: parsed.name,
-            owner: parsed.owner,
-            description: '',
-            lastUpdated: new Date().toISOString(),
-            language: 'Unknown',
-            stars: 0,
-            url: repoUrl,
-          };
-          setRepository(repo);
+          // Check if we have this tutorial in our static list
+          const tutorial = tutorials.find(
+            t => t.owner.toLowerCase() === parsed.owner.toLowerCase() && 
+                 t.name.toLowerCase() === parsed.name.toLowerCase()
+          );
+          
+          if (tutorial) {
+            setRepository(tutorial);
+          } else {
+            // Create a basic repository object without docPath
+            const repo: Repository = {
+              id: `${parsed.owner}/${parsed.name}`,
+              name: parsed.name,
+              owner: parsed.owner,
+              description: '',
+              lastUpdated: new Date().toISOString(),
+              language: 'Unknown',
+              stars: 0,
+              url: repoUrl,
+            };
+            setRepository(repo);
+          }
+          
           navigate(`/docs/${parsed.owner}/${parsed.name}`);
         }
       }

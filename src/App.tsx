@@ -24,8 +24,8 @@ function AppContent() {
   const { tasks } = useAppStore();
   const location = useLocation();
   
-  // Hide header on podcast editor pages
-  const showHeader = !location.pathname.startsWith('/video/');
+  // Hide header on podcast editor pages and documentation pages
+  const showHeader = !location.pathname.startsWith('/video/') && !location.pathname.startsWith('/docs/');
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white font-mono">

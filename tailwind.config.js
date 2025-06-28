@@ -54,6 +54,9 @@ export default {
       backdropBlur: {
         xs: '2px',
       },
+      transitionProperty: {
+        'filter': 'filter',
+      },
     },
   },
   plugins: [

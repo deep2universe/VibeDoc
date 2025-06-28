@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Header } from './components/layout/Header';
 import { ProgressTracker } from './components/common/ProgressTracker';
 import { ErrorBoundary } from './components/common/ErrorBoundary';
+import { ApiKeyPrompt } from './components/common/ApiKeyPrompt';
 import { HomePage } from './pages/HomePage';
 import { DocumentationPage } from './pages/DocumentationPage';
 import { PodcastScriptEditorPage } from './pages/PodcastScriptEditorPage';
@@ -21,7 +22,7 @@ const queryClient = new QueryClient({
 
 function AppContent() {
   useTheme(); // Initialize theme
-  const { tasks } = useAppStore();
+  const { tasks, showApiKeyPrompt } = useAppStore();
   const location = useLocation();
   
   // Hide header on podcast editor pages and documentation pages
@@ -31,7 +32,7 @@ function AppContent() {
     <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white font-mono">
       {showHeader && <Header />}
       
-      <main>
+      <main className={showApiKeyPrompt ? 'filter blur-sm transition-filter duration-300' : 'transition-filter duration-300'}>
         <Suspense fallback={
           <div className="flex items-center justify-center min-h-[50vh]">
             <div className="animate-pulse text-gray-500 dark:text-gray-400">
@@ -52,6 +53,9 @@ function AppContent() {
           <ProgressTracker key={task.id} task={task} />
         )
       ))}
+
+      {/* API Key Prompt */}
+      {showApiKeyPrompt && <ApiKeyPrompt />}
     </div>
   );
 }

@@ -23,35 +23,32 @@ export const MermaidDiagram: React.FC<Props> = ({ chart }) => {
   useEffect(() => {
     if (elementRef.current && chart) {
       try {
+        // Generate a unique ID for this diagram
+        const id = `mermaid-${Math.random().toString(36).substr(2, 9)}`;
+        
         // Clear previous content
         elementRef.current.innerHTML = '';
         
-        // Create a div with the mermaid class and the chart content
-        const mermaidDiv = document.createElement('div');
-        mermaidDiv.className = 'mermaid';
-        mermaidDiv.textContent = chart;
-        
-        // Add the div to the DOM
-        elementRef.current.appendChild(mermaidDiv);
-        
-        // Initialize mermaid on this specific element
-        mermaid.init(undefined, mermaidDiv);
-        
-        // After rendering, find the SVG and make it responsive
-        setTimeout(() => {
-          if (elementRef.current) {
-            const svg = elementRef.current.querySelector('svg');
-            if (svg) {
-              // Remove fixed width and height attributes
-              svg.removeAttribute('width');
-              svg.removeAttribute('height');
-              
-              // Add responsive styling
-              svg.style.maxWidth = '100%';
-              svg.style.height = 'auto';
+        // Render the diagram using mermaid.render() instead of mermaid.init()
+        mermaid.render(id, chart)
+          .then(({ svg }) => {
+            // Make SVG responsive by removing fixed dimensions
+            const scalableSvg = svg
+              .replace(/width="\d+(\.\d+)?(pt|px)?"/, 'width="100%"')
+              .replace(/height="\d+(\.\d+)?(pt|px)?"/, 'height="auto"')
+              .replace(/style="max-width:.+?"/, 'style="max-width: 100%; height: auto;"');
+            
+            // Insert the SVG content directly
+            if (elementRef.current) {
+              elementRef.current.innerHTML = scalableSvg;
             }
-          }
-        }, 100);
+          })
+          .catch(error => {
+            console.error('Error rendering preview diagram:', error);
+            if (elementRef.current) {
+              elementRef.current.innerHTML = `<div class="p-4 text-red-500 dark:text-red-400 font-mono">Error rendering diagram: ${error.message}</div>`;
+            }
+          });
       } catch (e) {
         console.error('Error rendering preview diagram:', e);
         if (elementRef.current) {

@@ -78,7 +78,7 @@ export const MermaidDiagram: React.FC<Props> = ({ chart }) => {
       {/* Zoom overlay */}
       {isZoomed && (
         <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="relative bg-white dark:bg-gray-800 rounded-xl shadow-2xl max-w-5xl w-full max-h-[90vh] overflow-hidden">
+          <div className="relative bg-white dark:bg-gray-800 rounded-xl shadow-2xl max-w-7xl w-full max-h-[95vh] overflow-hidden">
             {/* Header */}
             <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
               <h3 className="font-mono font-medium text-gray-900 dark:text-white">
@@ -131,9 +131,9 @@ export const MermaidDiagram: React.FC<Props> = ({ chart }) => {
                     </div>
                     
                     {/* Diagram content with zoom functionality */}
-                    <div className="h-[calc(90vh-8rem)] overflow-hidden">
+                    <div className="h-[calc(95vh-6rem)] overflow-hidden">
                       <TransformComponent wrapperClass="w-full h-full" contentClass="flex items-center justify-center w-full h-full">
-                        <div ref={zoomElementRef} className="bg-white dark:bg-gray-800 p-4" />
+                        <div ref={zoomElementRef} className="bg-white dark:bg-gray-800" />
                       </TransformComponent>
                     </div>
                   </>

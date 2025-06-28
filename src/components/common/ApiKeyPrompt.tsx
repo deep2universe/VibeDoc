@@ -64,27 +64,7 @@ export const ApiKeyPrompt: React.FC = () => {
               To use the AI features of VibeDoc, you'll need API keys from:
             </p>
             
-            <div className="flex flex-col items-center justify-center gap-6 my-8">
-              <motion.a
-                href="https://console.anthropic.com/account/keys"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex flex-col items-center p-4 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-400 transition-all duration-300 hover:shadow-lg group"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <div className="h-12 flex items-center justify-center text-gray-800 dark:text-gray-200">
-                  <img 
-                    src="/images/antropic_short.svg" 
-                    alt="Anthropic" 
-                    className="h-12 w-auto"
-                  />
-                </div>
-                <span className="text-sm font-mono text-gray-600 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors mt-3">
-                  Anthropic Claude
-                </span>
-              </motion.a>
-              
+            <div className="flex flex-row items-center justify-center gap-6 my-8">
               <motion.a
                 href="https://elevenlabs.io/app/api-key"
                 target="_blank"
@@ -102,6 +82,26 @@ export const ApiKeyPrompt: React.FC = () => {
                 </div>
                 <span className="text-sm font-mono text-gray-600 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors mt-3">
                   ElevenLabs
+                </span>
+              </motion.a>
+              
+              <motion.a
+                href="https://console.anthropic.com/account/keys"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex flex-col items-center p-4 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-400 transition-all duration-300 hover:shadow-lg group"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <div className="h-12 flex items-center justify-center text-gray-800 dark:text-gray-200">
+                  <img 
+                    src="/images/antropic_short.svg" 
+                    alt="Anthropic" 
+                    className="h-12 w-auto"
+                  />
+                </div>
+                <span className="text-sm font-mono text-gray-600 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors mt-3">
+                  Anthropic
                 </span>
               </motion.a>
             </div>

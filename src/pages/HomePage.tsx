@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Github, Clock, Search } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { Repository, useAppStore } from '../stores/appStore';
@@ -118,49 +118,71 @@ export const HomePage: React.FC = () => {
 
   // Mermaid diagram for the process explanation
   const processDiagram = `
-graph TD
-    %% Definiere alle Knoten zuerst
-    A[fa:fa-code Your Codebase]
-    B[fa:fa-brain Understanding]
-    C[fa:fa-comments Dialogue Creation]
-    D[fa:fa-paint-brush Visualization]
-    E[fa:fa-book Tutorial]
-    F[fa:fa-headphones Podcast MP3]
-    G[fa:fa-video Video MP4]
-    
-    %% Verbindungen zwischen Knoten
-    A -->|1. Analyze| B
-    B -->|2. Transform| C
-    C -->|3. Enhance| D
-    D --> E
-    D --> F
-    D --> G
-    
-    %% Subgraphen nur für visuelle Gruppierung
-    subgraph "INPUT"
-        A
-    end
-    
-    subgraph "AI MAGIC"
-        B
-        C
-        D
-    end
-    
-    subgraph "OUTPUTS"
-        E
-        F
-        G
-    end
-    
-    %% Styling
-    style A fill:#3498db,color:#fff
-    style B fill:#e74c3c,color:#fff
-    style C fill:#2ecc71,color:#fff
-    style D fill:#f39c12,color:#fff
-    style E fill:#9b59b6,color:#fff
-    style F fill:#1db954,color:#fff
-    style G fill:#ff0000,color:#fff
+flowchart TD
+      subgraph INPUT["🎯 INPUT"]
+          A[fa:fa-code Your Codebase]
+      end
+
+      subgraph AI["🤖 AI MAGIC"]
+          B[fa:fa-brain Understanding]
+          C[fa:fa-comments Dialogue Creation]
+          D[fa:fa-paint-brush Visualization]
+          B --> C
+          C --> D
+      end
+
+      subgraph AIVAL["🔍 AI VALIDATION"]
+          V1[fa:fa-code-branch Mermaid Rendering]
+          V2[fa:fa-exclamation-triangle Error Detection]
+          V3[fa:fa-magic LLM Auto-Fix]
+          V4[fa:fa-check-double Validation Loop]
+          V1 --> V2
+          V2 -->|Errors Found| V3
+          V3 --> V4
+          V4 -->|Retry| V1
+          V4 -->|Success| V5[fa:fa-thumbs-up All Checks Passed]
+      end
+
+      subgraph QUALITY["✅ HUMAN IN THE LOOP"]
+          H1[fa:fa-check Content Review]
+          H2[fa:fa-shield-alt Quality Checks]
+          H3[fa:fa-robot Final Approval]
+          H1 --> H2
+          H2 --> H3
+      end
+
+      subgraph OUTPUTS["📦 OUTPUTS"]
+          E[fa:fa-book Tutorial]
+          F[fa:fa-headphones Podcast MP3]
+          G[fa:fa-video Video MP4]
+      end
+
+      INPUT --> AI
+      AI --> AIVAL
+      AIVAL --> QUALITY
+      QUALITY --> OUTPUTS
+
+      %% AI Validation Details
+      V3 -.->|"• Fix Syntax Errors<br/>• Correct Node References<br/>• Adjust Layout Issues<br/>• Validate Connections<br/>• Renders mermaid diagrams to detect errors"| V3
+
+      %% Human Quality Checks
+      H2 -.->|"• Technical Accuracy<br/>• Tone & Style<br/>• Educational Value<br/>• Brand Consistency<br/>• AI Support"| H2
+
+      style A fill:#3498db,color:#fff
+      style B fill:#e74c3c,color:#fff
+      style C fill:#2ecc71,color:#fff
+      style D fill:#f39c12,color:#fff
+      style F fill:#1db954,color:#fff
+      style G fill:#ff0000,color:#fff
+      style E fill:#9b59b6,color:#fff
+      style V1 fill:#9b59b6,color:#fff
+      style V2 fill:#e74c3c,color:#fff
+      style V3 fill:#2ecc71,color:#fff
+      style V4 fill:#f39c12,color:#fff
+      style V5 fill:#27ae60,color:#fff
+      style H1 fill:#f39c12,color:#fff
+      style H2 fill:#3498db,color:#fff
+      style H3 fill:#2ecc71,color:#fff
   `;
 
   return (

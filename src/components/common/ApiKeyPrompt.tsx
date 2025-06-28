@@ -25,7 +25,7 @@ export const ApiKeyPrompt: React.FC = () => {
       transition={{ duration: 0.3 }}
     >
       <motion.div
-        className="bg-white dark:bg-gray-900 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 max-w-2xl w-full overflow-hidden"
+        className="bg-white dark:bg-gray-900 rounded-xl shadow-2xl max-w-2xl w-full overflow-hidden animate-pulse-border"
         initial={{ scale: 0.9, y: 20 }}
         animate={{ scale: 1, y: 0 }}
         transition={{ 
@@ -64,7 +64,7 @@ export const ApiKeyPrompt: React.FC = () => {
               To use the AI features of VibeDoc, you'll need API keys from:
             </p>
             
-            <div className="flex flex-col md:flex-row items-center justify-center gap-6 my-8">
+            <div className="flex flex-col items-center justify-center gap-6 my-8">
               <motion.a
                 href="https://console.anthropic.com/account/keys"
                 target="_blank"

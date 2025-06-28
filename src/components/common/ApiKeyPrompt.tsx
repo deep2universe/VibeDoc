@@ -66,7 +66,7 @@ export const ApiKeyPrompt: React.FC = () => {
             
             <div className="flex flex-row items-center justify-center gap-6 my-8">
               <motion.a
-                href="https://elevenlabs.io/app/api-key"
+                href="https://elevenlabs.io"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex flex-col items-center p-4 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-400 transition-all duration-300 hover:shadow-lg group"
@@ -75,7 +75,7 @@ export const ApiKeyPrompt: React.FC = () => {
               >
                 <div className="h-12 flex items-center justify-center text-gray-800 dark:text-gray-200">
                   <img 
-                    src="/images/elevenlabs_logo.svg" 
+                    src="/images/elevenlabs-symbol.svg" 
                     alt="ElevenLabs" 
                     className="h-12 w-auto"
                   />
@@ -86,7 +86,7 @@ export const ApiKeyPrompt: React.FC = () => {
               </motion.a>
               
               <motion.a
-                href="https://console.anthropic.com/account/keys"
+                href="https://www.anthropic.com/claude"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex flex-col items-center p-4 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-400 transition-all duration-300 hover:shadow-lg group"
@@ -101,7 +101,7 @@ export const ApiKeyPrompt: React.FC = () => {
                   />
                 </div>
                 <span className="text-sm font-mono text-gray-600 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors mt-3">
-                  Anthropic
+                  Anthropic Claude
                 </span>
               </motion.a>
             </div>
@@ -141,7 +141,12 @@ export const ApiKeyPrompt: React.FC = () => {
               Suggest New Repositories
             </h3>
             <p className="text-gray-700 dark:text-gray-300 font-mono">
-              Want to see documentation for a specific repository? Leave a comment on our YouTube channel. We appreciate your support!
+              Want to see documentation for a specific repository? Leave a comment on our <a 
+                href="https://www.youtube.com/@Vibe_Doc" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-blue-600 dark:text-blue-400 hover:underline"
+              >YouTube channel</a>. We appreciate your support!
             </p>
           </motion.div>
 

@@ -37,7 +37,7 @@ export const MermaidDiagram: React.FC<Props> = ({ chart }) => {
       });
 
       const id = `mermaid-zoom-${Math.random().toString(36).substr(2, 9)}`;
-      zoomElementRef.current.innerHTML = `<div class="mermaid" id="${id}">${chart}</div>`;
+      zoomElementRef.current.innerHTML = `<div class="mermaid w-full h-full" id="${id}">${chart}</div>`;
       mermaid.init(undefined, zoomElementRef.current.querySelector('.mermaid'));
     }
   }, [isZoomed, chart]);
@@ -77,13 +77,10 @@ export const MermaidDiagram: React.FC<Props> = ({ chart }) => {
 
       {/* Zoom overlay */}
       {isZoomed && (
-        <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
           <div className="relative bg-white dark:bg-gray-800 rounded-xl shadow-2xl max-w-7xl w-full max-h-[95vh] overflow-hidden">
-            {/* Header */}
-            <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
-              <h3 className="font-mono font-medium text-gray-900 dark:text-white">
-                Diagram Viewer
-              </h3>
+            {/* Header - removed the title */}
+            <div className="flex items-center justify-end p-4 border-b border-gray-200 dark:border-gray-700">
               <button
                 onClick={handleZoomToggle}
                 className="p-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors"
@@ -130,10 +127,10 @@ export const MermaidDiagram: React.FC<Props> = ({ chart }) => {
                       </button>
                     </div>
                     
-                    {/* Diagram content with zoom functionality */}
-                    <div className="h-[calc(95vh-6rem)] overflow-hidden">
-                      <TransformComponent wrapperClass="w-full h-full" contentClass="flex items-center justify-center w-full h-full">
-                        <div ref={zoomElementRef} className="bg-white dark:bg-gray-800" />
+                    {/* Diagram content with zoom functionality - removed flex centering classes */}
+                    <div className="h-[calc(95vh-4rem)] overflow-hidden">
+                      <TransformComponent wrapperClass="w-full h-full" contentClass="w-full h-full">
+                        <div ref={zoomElementRef} className="bg-white dark:bg-gray-800 w-full h-full" />
                       </TransformComponent>
                     </div>
                   </>

@@ -32,8 +32,16 @@ export const MermaidDiagram: React.FC<Props> = ({ chart }) => {
         try {
           // Wir brauchen keine zufällige ID, da wir den Inhalt direkt setzen.
           const { svg } = await mermaid.render('preview-diagram', chart);
+          
+          // WICHTIG: Wende die gleiche SVG-Manipulation wie beim Zoom-Diagramm an
+          // Entferne feste Breiten- und Höhenattribute und setze responsive Styles
+          const scalableSvg = svg
+            .replace(/width="\d+(\.\d+)?(pt|px)?"/, '')
+            .replace(/height="\d+(\.\d+)?(pt|px)?"/, '')
+            .replace(/style="max-width:.+?"/, 'style="max-width: 100%; height: auto;"');
+          
           if (elementRef.current) {
-            elementRef.current.innerHTML = svg;
+            elementRef.current.innerHTML = scalableSvg;
           }
         } catch (e) {
           console.error('Error rendering preview diagram:', e);
@@ -88,13 +96,13 @@ export const MermaidDiagram: React.FC<Props> = ({ chart }) => {
       {/* Vorschau-Diagramm */}
       <div className="my-4 flex justify-center">
         <div
-          className="relative bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden cursor-pointer group"
+          className="relative bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden cursor-pointer group w-full"
           onClick={handleZoomToggle}
         >
           {/* Container für das Vorschau-Diagramm */}
           <div
             ref={elementRef}
-            className="p-4 flex justify-center items-center" // Zentrierung verbessert
+            className="p-4 flex justify-center items-center w-full min-h-[200px]"
           />
           
           {/* Zoom-Button Overlay */}

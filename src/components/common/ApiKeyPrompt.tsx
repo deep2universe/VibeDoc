@@ -101,10 +101,14 @@ export const ApiKeyPrompt: React.FC = () => {
                   />
                 </div>
                 <span className="text-sm font-mono text-gray-600 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors mt-3">
-                  Anthropic Claude
+                  Anthropic
                 </span>
               </motion.a>
             </div>
+            
+            <p className="text-gray-700 dark:text-gray-300 font-mono mt-4">
+              Check out their subscription offers for the best pricing options for your needs.
+            </p>
           </motion.div>
 
           <motion.div 
@@ -167,7 +171,7 @@ export const ApiKeyPrompt: React.FC = () => {
               htmlFor="doNotShow"
               className="ml-2 text-sm font-mono text-gray-600 dark:text-gray-400"
             >
-              Don't show this again
+              Don't show this again (Note: If checked, AI functions will not work without valid API keys, and no further prompts will appear)
             </label>
           </motion.div>
         </div>

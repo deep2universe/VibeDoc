@@ -142,8 +142,8 @@ interface AppState {
 export const useAppStore = create<AppState>()(
   persist(
     (set, get) => ({
-      // Theme
-      theme: 'dark',
+      // Theme - changed from 'dark' to 'light'
+      theme: 'light',
       toggleTheme: () => set((state) => ({ 
         theme: state.theme === 'dark' ? 'light' : 'dark' 
       })),

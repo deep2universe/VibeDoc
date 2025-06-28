@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import mermaid from 'mermaid';
-import { Maximize2, X, ZoomIn, ZoomOut, RotateCcw } from 'lucide-react';
+import { Maximize2, X, ZoomIn, ZoomOut, Move, RotateCcw } from 'lucide-react';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 
 interface Props {
@@ -37,7 +37,7 @@ export const MermaidDiagram: React.FC<Props> = ({ chart }) => {
       });
 
       const id = `mermaid-zoom-${Math.random().toString(36).substr(2, 9)}`;
-      zoomElementRef.current.innerHTML = `<div class="mermaid w-full h-full" id="${id}">${chart}</div>`;
+      zoomElementRef.current.innerHTML = `<div class="mermaid" id="${id}">${chart}</div>`;
       mermaid.init(undefined, zoomElementRef.current.querySelector('.mermaid'));
     }
   }, [isZoomed, chart]);
@@ -56,7 +56,7 @@ export const MermaidDiagram: React.FC<Props> = ({ chart }) => {
         >
           <div
             ref={elementRef}
-            className="p-2 max-w-full overflow-x-auto"
+            className="p-4 max-w-full overflow-x-auto"
           />
           
           {/* Zoom button overlay */}
@@ -77,9 +77,9 @@ export const MermaidDiagram: React.FC<Props> = ({ chart }) => {
 
       {/* Zoom overlay */}
       {isZoomed && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="relative bg-white dark:bg-gray-800 rounded-xl shadow-2xl max-w-7xl w-full max-h-[95vh] overflow-hidden">
-            {/* Header - removed the title */}
+        <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4">
+          <div className="relative bg-white dark:bg-gray-800 rounded-xl shadow-2xl max-w-7xl w-full h-[90vh] flex flex-col overflow-hidden">
+            {/* Header with close button */}
             <div className="flex items-center justify-end p-4 border-b border-gray-200 dark:border-gray-700">
               <button
                 onClick={handleZoomToggle}
@@ -90,12 +90,12 @@ export const MermaidDiagram: React.FC<Props> = ({ chart }) => {
               </button>
             </div>
             
-            {/* Zoom controls */}
-            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-10 flex items-center gap-2 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-lg shadow-lg p-1 border border-gray-200 dark:border-gray-700">
+            {/* Main content area with diagram */}
+            <div className="flex-1 overflow-hidden">
               <TransformWrapper
                 initialScale={1}
                 minScale={0.5}
-                maxScale={3}
+                maxScale={4}
                 centerOnInit
                 limitToBounds={false}
                 wheel={{ step: 0.1 }}
@@ -103,36 +103,38 @@ export const MermaidDiagram: React.FC<Props> = ({ chart }) => {
               >
                 {({ zoomIn, zoomOut, resetTransform }) => (
                   <>
-                    <div className="flex items-center gap-1">
+                    {/* Zoom controls */}
+                    <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-10 flex items-center gap-2 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-lg shadow-lg p-1 border border-gray-200 dark:border-gray-700">
                       <button
                         onClick={() => zoomOut()}
                         className="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-400"
                         aria-label="Zoom out"
                       >
-                        <ZoomOut className="w-4 h-4" />
+                        <ZoomOut className="w-5 h-5" />
                       </button>
                       <button
                         onClick={() => zoomIn()}
                         className="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-400"
                         aria-label="Zoom in"
                       >
-                        <ZoomIn className="w-4 h-4" />
+                        <ZoomIn className="w-5 h-5" />
                       </button>
                       <button
                         onClick={() => resetTransform()}
                         className="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-400"
                         aria-label="Reset zoom"
                       >
-                        <RotateCcw className="w-4 h-4" />
+                        <RotateCcw className="w-5 h-5" />
                       </button>
+                      <div className="px-2 text-sm font-mono text-gray-500 dark:text-gray-400">
+                        <Move className="w-4 h-4 inline mr-1" /> Drag to pan
+                      </div>
                     </div>
                     
-                    {/* Diagram content with zoom functionality - removed flex centering classes */}
-                    <div className="h-[calc(95vh-4rem)] overflow-hidden">
-                      <TransformComponent wrapperClass="w-full h-full" contentClass="w-full h-full">
-                        <div ref={zoomElementRef} className="bg-white dark:bg-gray-800 w-full h-full" />
-                      </TransformComponent>
-                    </div>
+                    {/* Diagram content with zoom functionality */}
+                    <TransformComponent wrapperClassName="w-full h-full" contentClassName="w-full h-full flex items-center justify-center">
+                      <div ref={zoomElementRef} className="bg-white dark:bg-gray-800 p-8 w-full h-full flex items-center justify-center" />
+                    </TransformComponent>
                   </>
                 )}
               </TransformWrapper>

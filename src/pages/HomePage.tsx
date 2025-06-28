@@ -5,6 +5,7 @@ import { Repository, useAppStore } from '../stores/appStore';
 import { useTheme } from '../hooks/useTheme';
 import { YouTubeEmbed } from '../components/common/YouTubeEmbed';
 import { tutorials } from '../data/tutorials';
+import { MarkdownRenderer } from '../components/documentation/MarkdownRenderer';
 
 const podcastVideos = [
   {
@@ -115,6 +116,53 @@ export const HomePage: React.FC = () => {
     ? 'https://vibedoc.s3.eu-central-1.amazonaws.com/black_circle_360x360.png'
     : 'https://vibedoc.s3.eu-central-1.amazonaws.com/white_circle_360x360.png';
 
+  // Mermaid diagram for the process explanation
+  const processDiagram = `
+graph TD
+    %% Definiere alle Knoten zuerst
+    A[fa:fa-code Your Codebase]
+    B[fa:fa-brain Understanding]
+    C[fa:fa-comments Dialogue Creation]
+    D[fa:fa-paint-brush Visualization]
+    E[fa:fa-book Tutorial]
+    F[fa:fa-headphones Podcast MP3]
+    G[fa:fa-video Video MP4]
+    
+    %% Verbindungen zwischen Knoten
+    A -->|1. Analyze| B
+    B -->|2. Transform| C
+    C -->|3. Enhance| D
+    D --> E
+    D --> F
+    D --> G
+    
+    %% Subgraphen nur für visuelle Gruppierung
+    subgraph "INPUT"
+        A
+    end
+    
+    subgraph "AI MAGIC"
+        B
+        C
+        D
+    end
+    
+    subgraph "OUTPUTS"
+        E
+        F
+        G
+    end
+    
+    %% Styling
+    style A fill:#3498db,color:#fff
+    style B fill:#e74c3c,color:#fff
+    style C fill:#2ecc71,color:#fff
+    style D fill:#f39c12,color:#fff
+    style E fill:#9b59b6,color:#fff
+    style F fill:#1db954,color:#fff
+    style G fill:#ff0000,color:#fff
+  `;
+
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
       <div className="max-w-6xl mx-auto px-4 py-12">
@@ -223,7 +271,7 @@ export const HomePage: React.FC = () => {
         </div>
 
         {/* Available Documentation - Now below videos */}
-        <div className="mb-8">
+        <div className="mb-16">
           <h2 className="text-2xl font-mono font-bold text-gray-900 dark:text-white mb-8 text-center">
             Available Documentation
           </h2>
@@ -260,7 +308,7 @@ export const HomePage: React.FC = () => {
         </div>
 
         {/* Features preview */}
-        <div className="text-center mt-16">
+        <div className="text-center mt-16 mb-16">
           <h2 className="text-2xl font-mono font-bold text-gray-900 dark:text-white mb-8">
             What You Can Create
           </h2>
@@ -293,6 +341,47 @@ export const HomePage: React.FC = () => {
               <h3 className="font-mono font-semibold text-lg mb-2">Podcasts</h3>
               <p className="text-gray-600 dark:text-gray-400 font-mono text-sm">
                 Interactive conversations about your code and concepts
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* New Process Explanation Section with Mermaid Diagram */}
+        <div className="mb-16 bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 p-8">
+          <h2 className="text-2xl font-mono font-bold text-gray-900 dark:text-white mb-8 text-center">
+            How VibeDoc Works
+          </h2>
+          
+          <div className="mb-8">
+            <p className="text-gray-700 dark:text-gray-300 font-mono text-center mb-8">
+              Our AI-powered pipeline transforms your code into multiple learning formats
+            </p>
+            
+            {/* Mermaid Diagram */}
+            <div className="max-w-4xl mx-auto">
+              <MarkdownRenderer content={`\`\`\`mermaid\n${processDiagram}\n\`\`\``} />
+            </div>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+            <div className="bg-gray-50 dark:bg-gray-900 p-6 rounded-lg border border-gray-200 dark:border-gray-700">
+              <h3 className="font-mono font-semibold text-lg mb-4 text-blue-600 dark:text-blue-400">Input</h3>
+              <p className="text-gray-700 dark:text-gray-300 font-mono text-sm">
+                We analyze your repository's code, documentation, and structure to understand its architecture and purpose.
+              </p>
+            </div>
+            
+            <div className="bg-gray-50 dark:bg-gray-900 p-6 rounded-lg border border-gray-200 dark:border-gray-700">
+              <h3 className="font-mono font-semibold text-lg mb-4 text-green-600 dark:text-green-400">AI Processing</h3>
+              <p className="text-gray-700 dark:text-gray-300 font-mono text-sm">
+                Our AI transforms technical concepts into clear explanations, creates engaging dialogues, and generates helpful visualizations.
+              </p>
+            </div>
+            
+            <div className="bg-gray-50 dark:bg-gray-900 p-6 rounded-lg border border-gray-200 dark:border-gray-700">
+              <h3 className="font-mono font-semibold text-lg mb-4 text-purple-600 dark:text-purple-400">Outputs</h3>
+              <p className="text-gray-700 dark:text-gray-300 font-mono text-sm">
+                The result is a suite of learning materials: comprehensive documentation, engaging podcasts, and visual tutorials.
               </p>
             </div>
           </div>

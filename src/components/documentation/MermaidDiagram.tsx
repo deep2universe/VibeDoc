@@ -37,7 +37,8 @@ export const MermaidDiagram: React.FC<Props> = ({ chart }) => {
       });
 
       const id = `mermaid-zoom-${Math.random().toString(36).substr(2, 9)}`;
-      zoomElementRef.current.innerHTML = `<div class="mermaid" id="${id}">${chart}</div>`;
+      // Set display: flex on the mermaid container to center its content
+      zoomElementRef.current.innerHTML = `<div class="mermaid" id="${id}" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">${chart}</div>`;
       
       // Initialize mermaid and then adjust the SVG to fill the container
       mermaid.init(undefined, zoomElementRef.current.querySelector('.mermaid'))
@@ -51,6 +52,8 @@ export const MermaidDiagram: React.FC<Props> = ({ chart }) => {
                 // Make the SVG fill its container
                 svg.style.width = '100%';
                 svg.style.height = '100%';
+                svg.style.maxWidth = 'none';
+                svg.style.maxHeight = 'none';
                 
                 // Remove any fixed width/height attributes that might constrain scaling
                 svg.removeAttribute('width');
@@ -159,10 +162,13 @@ export const MermaidDiagram: React.FC<Props> = ({ chart }) => {
                     </div>
                     
                     {/* Diagram content with zoom functionality */}
-                    <TransformComponent wrapperClassName="w-full h-full" contentClassName="w-full h-full flex items-center justify-center">
+                    <TransformComponent 
+                      wrapperClassName="w-full h-full" 
+                      contentClassName="w-full h-full flex items-center justify-center"
+                    >
                       <div 
                         ref={zoomElementRef} 
-                        className="w-full h-full flex items-center justify-center p-8"
+                        className="w-full h-full flex items-center justify-center"
                         style={{ minWidth: '100%', minHeight: '100%' }}
                       />
                     </TransformComponent>

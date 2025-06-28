@@ -38,7 +38,34 @@ export const MermaidDiagram: React.FC<Props> = ({ chart }) => {
 
       const id = `mermaid-zoom-${Math.random().toString(36).substr(2, 9)}`;
       zoomElementRef.current.innerHTML = `<div class="mermaid" id="${id}">${chart}</div>`;
-      mermaid.init(undefined, zoomElementRef.current.querySelector('.mermaid'));
+      
+      // Initialize mermaid and then adjust the SVG to fill the container
+      mermaid.init(undefined, zoomElementRef.current.querySelector('.mermaid'))
+        .then(() => {
+          // Small delay to ensure the SVG is fully rendered
+          setTimeout(() => {
+            if (zoomElementRef.current) {
+              // Find the SVG element created by mermaid
+              const svg = zoomElementRef.current.querySelector('svg');
+              if (svg) {
+                // Make the SVG fill its container
+                svg.style.width = '100%';
+                svg.style.height = '100%';
+                
+                // Remove any fixed width/height attributes that might constrain scaling
+                svg.removeAttribute('width');
+                svg.removeAttribute('height');
+                
+                // Center the diagram content within the SVG
+                const viewBox = svg.getAttribute('viewBox');
+                if (viewBox) {
+                  // Keep the viewBox to maintain aspect ratio
+                  svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+                }
+              }
+            }
+          }, 100);
+        });
     }
   }, [isZoomed, chart]);
 
@@ -133,7 +160,11 @@ export const MermaidDiagram: React.FC<Props> = ({ chart }) => {
                     
                     {/* Diagram content with zoom functionality */}
                     <TransformComponent wrapperClassName="w-full h-full" contentClassName="w-full h-full flex items-center justify-center">
-                      <div ref={zoomElementRef} className="bg-white dark:bg-gray-800 p-8 w-full h-full flex items-center justify-center" />
+                      <div 
+                        ref={zoomElementRef} 
+                        className="w-full h-full flex items-center justify-center p-8"
+                        style={{ minWidth: '100%', minHeight: '100%' }}
+                      />
                     </TransformComponent>
                   </>
                 )}

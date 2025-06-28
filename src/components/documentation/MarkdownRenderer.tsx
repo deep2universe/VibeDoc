@@ -14,15 +14,20 @@ export const MarkdownRenderer: React.FC<Props> = ({ content, onLinkClick }) => {
   return (
     <ReactMarkdown
       remarkPlugins={[remarkGfm]}
-      rehypePlugins={[rehypeHighlight, rehypeRaw]}
+      // GEÄNDERT: Optionen für rehypeHighlight hinzugefügt
+      rehypePlugins={[[rehypeHighlight, { ignoreMissing: true }], rehypeRaw]}
       components={{
         // Custom component for Mermaid blocks
         code: ({ node, inline, className, children, ...props }) => {
           const match = /language-(\w+)/.exec(className || '');
+          
+          // Mermaid-Block-Logik
           if (!inline && match && match[1] === 'mermaid') {
-            return <MermaidDiagram chart={String(children)} />;
+            // GEÄNDERT: .trim() hinzugefügt, um den String zu bereinigen
+            return <MermaidDiagram chart={String(children).trim()} />;
           }
           
+          // Inline-Code-Styling
           if (inline) {
             return (
               <code 
@@ -34,9 +39,11 @@ export const MarkdownRenderer: React.FC<Props> = ({ content, onLinkClick }) => {
             );
           }
           
+          // Standard-Code-Block-Styling (für andere Sprachen)
+          // `rehypeHighlight` hat hier bereits seine Arbeit getan, wenn die Sprache unterstützt wird
           return (
             <pre className="bg-gray-900 dark:bg-gray-950 p-4 rounded-lg overflow-x-auto">
-              <code className="text-gray-100 font-mono text-sm" {...props}>
+              <code className={className} {...props}>
                 {children}
               </code>
             </pre>
@@ -45,7 +52,6 @@ export const MarkdownRenderer: React.FC<Props> = ({ content, onLinkClick }) => {
         
         // Custom link handler for internal chapter links
         a: ({ href, children, ...props }) => {
-          // Check if this is an internal markdown link
           if (href && href.endsWith('.md') && onLinkClick) {
             return (
               <button
@@ -60,7 +66,6 @@ export const MarkdownRenderer: React.FC<Props> = ({ content, onLinkClick }) => {
             );
           }
           
-          // External links or non-markdown links
           return (
             <a 
               href={href} 
@@ -74,7 +79,8 @@ export const MarkdownRenderer: React.FC<Props> = ({ content, onLinkClick }) => {
           );
         },
         
-        // Custom table styling
+        // ... (der Rest deiner Komponenten bleibt unverändert)
+        
         table: ({ children }) => (
           <div className="overflow-x-auto my-6">
             <table className="min-w-full border-collapse border border-gray-300 dark:border-gray-700">
@@ -95,7 +101,6 @@ export const MarkdownRenderer: React.FC<Props> = ({ content, onLinkClick }) => {
           </td>
         ),
         
-        // Custom heading with anchor links
         h1: ({ children }) => (
           <h1 className="text-3xl font-bold font-mono mb-6 mt-8 text-gray-900 dark:text-white">
             {children}
@@ -121,7 +126,7 @@ export const MarkdownRenderer: React.FC<Props> = ({ content, onLinkClick }) => {
         ),
         
         ul: ({ children }) => (
-          <ul className="mb-4 pl-6 space-y-2 font-mono text-gray-700 dark:text-gray-300">
+          <ul className="mb-4 pl-6 space-y-2 font-mono text-gray-700 dark:text-gray-300 list-disc">
             {children}
           </ul>
         ),

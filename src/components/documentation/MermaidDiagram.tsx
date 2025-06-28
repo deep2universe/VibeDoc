@@ -36,6 +36,7 @@ export const MermaidDiagram: React.FC<Props> = ({ chart }) => {
             startOnLoad: false,
             theme: 'default',
             securityLevel: 'loose',
+            useMaxWidth: true, // Add this option to make Mermaid respect container width
           });
 
           const id = `mermaid-zoom-${Math.random().toString(36).substr(2, 9)}`;
@@ -62,6 +63,7 @@ export const MermaidDiagram: React.FC<Props> = ({ chart }) => {
             svgElement.style.height = '100%';
             svgElement.style.maxWidth = 'none';
             svgElement.style.maxHeight = 'none';
+            svgElement.style.display = 'block'; // Add display: block to avoid inline behavior
             
             // Remove any fixed width/height attributes that might constrain scaling
             svgElement.removeAttribute('width');
@@ -69,6 +71,13 @@ export const MermaidDiagram: React.FC<Props> = ({ chart }) => {
             
             // Center the diagram content within the SVG
             svgElement.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+            
+            // Find the g element that contains the actual diagram
+            const gElement = svgElement.querySelector('g');
+            if (gElement) {
+              // Ensure the transform origin is centered
+              gElement.style.transformOrigin = 'center center';
+            }
           }
           
           // Clear the zoom element and append the container

@@ -68,11 +68,20 @@ export const DocumentationPage: React.FC = () => {
   // Load specific chapter content when activeFile changes
   useEffect(() => {
     const loadChapterContent = async () => {
-      if (!activeFile || activeFile === 'index' || !currentRepository?.docPath || !currentRepository?.chapters) {
-        return;
-      }
+      if (!currentRepository?.docPath) return;
       
       try {
+        // If activeFile is 'index', load the index.md file
+        if (activeFile === 'index') {
+          const indexPath = `${currentRepository.docPath}/index.md`;
+          const indexContent = await loadMarkdownContent(indexPath);
+          setCurrentMarkdownContent(indexContent);
+          return;
+        }
+        
+        // Otherwise, find and load the specific chapter
+        if (!activeFile || !currentRepository?.chapters) return;
+        
         // Find the chapter filename
         const chapter = currentRepository.chapters.find(ch => ch.id === activeFile);
         if (!chapter) return;

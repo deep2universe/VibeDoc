@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
-import { Menu, Copy, Eye, Code } from 'lucide-react';
+import { Menu, Copy, Eye, Code, Github } from 'lucide-react';
 import { useAppStore } from '../stores/appStore';
 import { MarkdownRenderer } from '../components/documentation/MarkdownRenderer';
 import { NavigationSidebar } from '../components/documentation/NavigationSidebar';
@@ -163,9 +163,16 @@ export const DocumentationPage: React.FC = () => {
               <Menu className="w-4 h-4" />
             </button>
             
-            <div className="text-sm font-mono text-gray-600 dark:text-gray-400">
-              {getDisplayUrl()}
-            </div>
+            {/* Repository URL with GitHub link */}
+            <a
+              href={currentRepository?.url || `https://github.com/${owner}/${repo}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-sm font-mono text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+            >
+              <Github className="w-4 h-4" />
+              <span>{getDisplayUrl()}</span>
+            </a>
             
             {error && (
               <div className="text-xs font-mono text-red-500 dark:text-red-400">

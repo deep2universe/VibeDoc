@@ -19,7 +19,7 @@ export const PodcastScriptEditorPage: React.FC = () => {
     collapseAllClusters,
     searchQuery,
     setSearchQuery,
-    currentDocumentation
+    currentRepository
   } = useAppStore();
 
   const [showParticipants, setShowParticipants] = useState(false);
@@ -157,11 +157,14 @@ export const PodcastScriptEditorPage: React.FC = () => {
   };
 
   const getDisplayUrl = () => {
-    if (currentDocumentation?.repositoryUrl) {
-      return currentDocumentation.repositoryUrl.replace('https://github.com/', '');
+    if (currentRepository?.url) {
+      return currentRepository.url.replace('https://github.com/', '');
     }
     return `${owner}/${repo}`;
   };
+
+  // Get the first participant's name to determine dialogue alignment
+  const firstParticipantName = podcastData.participants[0]?.name.toLowerCase();
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
@@ -268,6 +271,7 @@ export const PodcastScriptEditorPage: React.FC = () => {
               key={`${dialogue.clusterId}-${dialogue.dialogue_id}`}
               dialogue={dialogue}
               clusterId={dialogue.clusterId}
+              isFirstParticipant={dialogue.speaker.toLowerCase() === firstParticipantName}
             />
           ))}
         </div>

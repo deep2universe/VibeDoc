@@ -8,6 +8,7 @@ import { EditableMermaid } from './EditableMermaid';
 interface Props {
   dialogue: Dialogue;
   clusterId: string;
+  isFirstParticipant?: boolean; // New prop to determine if this is the first participant
 }
 
 const AI_TEXT_PROMPTS = [
@@ -19,14 +20,12 @@ const AI_TEXT_PROMPTS = [
   { id: 'enthusiasm', label: 'Add Enthusiasm', description: 'Make it more exciting and energetic' },
 ];
 
-export const DialogueBubble: React.FC<Props> = ({ dialogue, clusterId }) => {
-  const { updateDialogue } = useAppStore();
+export const DialogueBubble: React.FC<Props> = ({ dialogue, clusterId, isFirstParticipant = false }) => {
+  const { updateDialogue, podcastData } = useAppStore();
   const [isEditing, setIsEditing] = useState(false);
   const [editedText, setEditedText] = useState(dialogue.text);
   const [showAIPrompts, setShowAIPrompts] = useState(false);
   const [aiPrompt, setAiPrompt] = useState('');
-
-  const isEmma = dialogue.speaker.toLowerCase() === 'emma';
 
   const handleTextSave = () => {
     updateDialogue(clusterId, dialogue.dialogue_id, { text: editedText });
@@ -62,12 +61,12 @@ export const DialogueBubble: React.FC<Props> = ({ dialogue, clusterId }) => {
   };
 
   return (
-    <div className={`flex ${isEmma ? 'justify-start' : 'justify-end'} mb-6`}>
-      <div className={`max-w-4xl w-full ${isEmma ? 'mr-12' : 'ml-12'}`}>
+    <div className={`flex ${isFirstParticipant ? 'justify-start' : 'justify-end'} mb-6`}>
+      <div className={`max-w-4xl w-full ${isFirstParticipant ? 'mr-12' : 'ml-12'}`}>
         {/* Speaker indicator */}
-        <div className={`flex items-center gap-2 mb-2 ${isEmma ? 'justify-start' : 'justify-end'}`}>
+        <div className={`flex items-center gap-2 mb-2 ${isFirstParticipant ? 'justify-start' : 'justify-end'}`}>
           <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-mono font-bold ${
-            isEmma 
+            isFirstParticipant 
               ? 'bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300'
               : 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300'
           }`}>
@@ -83,7 +82,7 @@ export const DialogueBubble: React.FC<Props> = ({ dialogue, clusterId }) => {
 
         {/* Dialogue bubble */}
         <div className={`rounded-2xl p-6 relative ${
-          isEmma
+          isFirstParticipant
             ? 'bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white'
             : 'bg-blue-600 dark:bg-blue-700 text-white'
         }`}>
@@ -92,7 +91,7 @@ export const DialogueBubble: React.FC<Props> = ({ dialogue, clusterId }) => {
             <button
               onClick={() => setIsEditing(!isEditing)}
               className={`p-1.5 rounded-lg transition-colors ${
-                isEmma
+                isFirstParticipant
                   ? 'hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-400'
                   : 'hover:bg-blue-500 text-blue-100'
               }`}
@@ -102,7 +101,7 @@ export const DialogueBubble: React.FC<Props> = ({ dialogue, clusterId }) => {
             <button
               onClick={() => setShowAIPrompts(!showAIPrompts)}
               className={`p-1.5 rounded-lg transition-colors ${
-                isEmma
+                isFirstParticipant
                   ? 'hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-400'
                   : 'hover:bg-blue-500 text-blue-100'
               }`}

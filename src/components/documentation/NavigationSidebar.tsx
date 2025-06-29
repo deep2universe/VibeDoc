@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { X, File, ChevronRight, ArrowLeft, FileText, Play } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useAppStore } from '../../stores/appStore';
@@ -15,7 +15,18 @@ export const NavigationSidebar: React.FC<Props> = ({ open, onClose }) => {
     currentRepository
   } = useAppStore();
   
+  const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set(['chapters']));
   const navigate = useNavigate();
+
+  const toggleExpanded = (itemId: string) => {
+    const newExpanded = new Set(expandedItems);
+    if (newExpanded.has(itemId)) {
+      newExpanded.delete(itemId);
+    } else {
+      newExpanded.add(itemId);
+    }
+    setExpandedItems(newExpanded);
+  };
 
   const handleItemClick = (itemId: string) => {
     setActiveFile(itemId);
@@ -37,20 +48,28 @@ export const NavigationSidebar: React.FC<Props> = ({ open, onClose }) => {
     }
   };
 
-  const renderNavItem = (item: { id: string; title: string }) => {
+  const renderNavItem = (item: { id: string; title: string; hasChildren?: boolean }) => {
+    const hasChildren = item.hasChildren;
+    const isExpanded = expandedItems.has(item.id);
     const isActive = activeFile === item.id;
 
     return (
       <div key={item.id}>
         <button
-          onClick={() => handleItemClick(item.id)}
+          onClick={() => hasChildren ? toggleExpanded(item.id) : handleItemClick(item.id)}
           className={`w-full flex items-center gap-2 px-3 py-2 text-sm font-mono text-left hover:bg-gray-100 dark:hover:bg-gray-800 rounded transition-colors ${
             isActive 
               ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300' 
               : 'text-gray-700 dark:text-gray-300'
           }`}
         >
-          <File className="w-3 h-3" />
+          {hasChildren ? (
+            <ChevronRight 
+              className={`w-3 h-3 transition-transform ${isExpanded ? 'rotate-90' : ''}`} 
+            />
+          ) : (
+            <File className="w-3 h-3" />
+          )}
           <span className="truncate">{item.title}</span>
         </button>
       </div>
@@ -91,8 +110,8 @@ export const NavigationSidebar: React.FC<Props> = ({ open, onClose }) => {
         {/* Navigation items - limited to 70% of viewport height with flex-1 and max-height */}
         <div className="flex-1 max-h-[70vh] overflow-y-auto px-4 custom-scrollbar">
           <div className="space-y-1 py-4">
-            {/* Overview/Index */}
-            {renderNavItem({ id: 'index', title: currentRepository?.name || 'Overview' })}
+            {/* Overview/Index - CHANGED: Always show as "Intro" */}
+            {renderNavItem({ id: 'index', title: 'Intro' })}
             
             {/* Chapters */}
             {currentRepository?.chapters && currentRepository.chapters.length > 0 && (

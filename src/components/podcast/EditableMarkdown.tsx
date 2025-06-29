@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Edit3, Eye, Sparkles } from 'lucide-react';
+import { Edit3, Eye, Sparkles, Zap, Send } from 'lucide-react';
 import { MarkdownRenderer } from '../documentation/MarkdownRenderer';
 
 interface Props {
@@ -7,9 +7,21 @@ interface Props {
   onChange: (content: string) => void;
 }
 
+// Define AI prompt options for markdown content
+const AI_MARKDOWN_PROMPTS = [
+  { id: 'improve', label: 'Improve Writing', description: 'Enhance clarity and readability' },
+  { id: 'simplify', label: 'Simplify', description: 'Make content more concise and easier to understand' },
+  { id: 'expand', label: 'Add Detail', description: 'Expand with more information and examples' },
+  { id: 'format', label: 'Improve Formatting', description: 'Enhance markdown structure and organization' },
+  { id: 'technical', label: 'More Technical', description: 'Add technical depth and precision' },
+  { id: 'beginner', label: 'Beginner Friendly', description: 'Make content accessible to newcomers' },
+];
+
 export const EditableMarkdown: React.FC<Props> = ({ content, onChange }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedContent, setEditedContent] = useState(content);
+  const [showAIPrompts, setShowAIPrompts] = useState(false);
+  const [aiPrompt, setAiPrompt] = useState('');
 
   const handleSave = () => {
     onChange(editedContent);
@@ -21,9 +33,21 @@ export const EditableMarkdown: React.FC<Props> = ({ content, onChange }) => {
     setIsEditing(false);
   };
 
-  const handleAIImprove = () => {
-    // Mock AI improvement
-    console.log('AI improving markdown content');
+  const handleAIPrompt = (promptId: string) => {
+    const prompt = AI_MARKDOWN_PROMPTS.find(p => p.id === promptId);
+    if (prompt) {
+      setAiPrompt(prompt.description);
+    }
+  };
+
+  const handleAISubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (aiPrompt.trim()) {
+      // Mock AI improvement based on prompt
+      console.log('AI improving markdown content with prompt:', aiPrompt);
+      setAiPrompt('');
+      setShowAIPrompts(false);
+    }
   };
 
   return (
@@ -43,13 +67,89 @@ export const EditableMarkdown: React.FC<Props> = ({ content, onChange }) => {
             {isEditing ? <Eye className="w-3 h-3" /> : <Edit3 className="w-3 h-3" />}
           </button>
           <button
-            onClick={handleAIImprove}
+            onClick={() => setShowAIPrompts(!showAIPrompts)}
             className="p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
           >
             <Sparkles className="w-3 h-3" />
           </button>
         </div>
       </div>
+
+      {/* AI Prompts Overlay */}
+      {showAIPrompts && (
+        <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex justify-center px-4">
+          <div className="fixed bottom-6 left-0 right-0 z-40 flex justify-center px-4">
+            {/* Enhanced glassmorphism background with centered content */}
+            <div className="backdrop-blur-xl bg-white/30 dark:bg-gray-900/30 border border-white/20 dark:border-gray-700/20 rounded-2xl shadow-2xl">
+              <div className="w-full max-w-4xl p-8">
+                <form onSubmit={handleAISubmit} className="space-y-6">
+                  {/* Header */}
+                  <div className="flex items-center gap-3 mb-6">
+                    <Zap className="w-6 h-6 text-blue-500" />
+                    <h3 className="font-mono font-semibold text-lg text-gray-900 dark:text-white">
+                      AI Markdown Improvements
+                    </h3>
+                  </div>
+
+                  {/* Input field */}
+                  <div className="relative">
+                    <textarea
+                      value={aiPrompt}
+                      onChange={(e) => setAiPrompt(e.target.value)}
+                      placeholder="Describe how you want to improve this markdown content..."
+                      className="w-full resize-none rounded-xl border border-gray-300/50 dark:border-gray-600/50 bg-white/80 dark:bg-gray-800/80 px-6 py-4 pr-16 font-mono text-sm placeholder-gray-500 dark:placeholder-gray-400 focus:border-blue-500/70 focus:outline-none focus:ring-2 focus:ring-blue-500/30 transition-all duration-300 backdrop-blur-sm custom-scrollbar"
+                      rows={3}
+                      style={{ minHeight: '80px' }}
+                    />
+                    <button
+                      type="submit"
+                      disabled={!aiPrompt.trim()}
+                      className="absolute bottom-4 right-4 p-2 rounded-lg bg-blue-300/60 hover:bg-blue-400/70 text-blue-900 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 shadow-lg hover:shadow-xl backdrop-blur-sm"
+                    >
+                      <Send className="w-5 h-5" />
+                    </button>
+                  </div>
+
+                  {/* Quick prompts */}
+                  <div className="space-y-4 pt-4 border-t border-white/20 dark:border-gray-700/20">
+                    <h4 className="font-mono text-sm font-medium text-gray-700 dark:text-gray-300">
+                      Quick Actions:
+                    </h4>
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                      {AI_MARKDOWN_PROMPTS.map((prompt) => (
+                        <button
+                          key={prompt.id}
+                          type="button"
+                          onClick={() => handleAIPrompt(prompt.id)}
+                          className="text-left p-4 rounded-xl bg-white/40 dark:bg-gray-800/40 hover:bg-white/60 dark:hover:bg-gray-800/60 transition-all duration-200 backdrop-blur-sm border border-white/30 dark:border-gray-700/30 group"
+                        >
+                          <div className="font-mono text-sm font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                            {prompt.label}
+                          </div>
+                          <div className="font-mono text-xs text-gray-600 dark:text-gray-300 mt-1 leading-relaxed">
+                            {prompt.description}
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Cancel button */}
+                  <div className="flex justify-center pt-4">
+                    <button
+                      type="button"
+                      onClick={() => setShowAIPrompts(false)}
+                      className="px-8 py-3 bg-white/40 dark:bg-gray-800/40 text-gray-700 dark:text-gray-300 rounded-xl hover:bg-white/60 dark:hover:bg-gray-800/60 transition-all duration-200 font-mono text-sm backdrop-blur-sm border border-white/30 dark:border-gray-700/30"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Content */}
       <div className="p-4">

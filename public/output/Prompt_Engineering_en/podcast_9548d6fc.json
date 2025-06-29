@@ -27,17 +27,17 @@
   "participants": [
     {
       "name": "Emma",
-      "role": "Masters Student",
-      "personality": "curious, analytical, eager to understand",
-      "background": "Working on thesis about workflow orchestration systems",
-      "speaking_style": "asks insightful questions, connects concepts to research, occasionally shares thesis insights"
+      "role": "Curious Beginner",
+      "personality": "enthusiastic, asks clarifying questions, relates concepts to everyday life",
+      "background": "Someone who just discovered AI tools and wants to use them effectively",
+      "speaking_style": "conversational, uses phrases like 'So basically...', 'Wait, let me understand...', 'Oh, that's like...'"
     },
     {
       "name": "Alex",
-      "role": "Senior Developer",
-      "personality": "patient, enthusiastic, knowledgeable",
-      "background": "10+ years experience building distributed systems",
-      "speaking_style": "explains with practical examples, uses analogies, encourages exploration"
+      "role": "Patient AI Expert",
+      "personality": "friendly, uses simple analogies, breaks down complex concepts",
+      "background": "Experienced developer who loves teaching and making AI accessible to everyone",
+      "speaking_style": "clear and encouraging, uses everyday examples, avoids jargon, says things like 'Think of it like...', 'Here's a simple way to remember...'"
     }
   ],
   "clusters": [

@@ -27,17 +27,17 @@
   "participants": [
     {
       "name": "Emma",
-      "role": "Masters Student",
-      "personality": "curious, analytical, eager to understand",
-      "background": "Working on thesis about workflow orchestration systems",
-      "speaking_style": "asks insightful questions, connects concepts to research, occasionally shares thesis insights"
+      "role": "Neugierige Anfängerin",
+      "personality": "begeistert, stellt klärende Fragen, bezieht Konzepte auf das Alltagsleben",
+      "background": "Jemand, der gerade KI-Tools entdeckt hat und sie effektiv nutzen möchte",
+      "speaking_style": "gesprächig, verwendet Phrasen wie 'Also im Grunde...', 'Warte, lass mich das verstehen...', 'Oh, das ist wie...'"
     },
     {
       "name": "Alex",
-      "role": "Senior Developer",
-      "personality": "patient, enthusiastic, knowledgeable",
-      "background": "10+ years experience building distributed systems",
-      "speaking_style": "explains with practical examples, uses analogies, encourages exploration"
+      "role": "Geduldiger KI-Experte",
+      "personality": "freundlich, verwendet einfache Analogien, zerlegt komplexe Konzepte",
+      "background": "Erfahrener Entwickler, der es liebt zu unterrichten und KI für alle zugänglich zu machen",
+      "speaking_style": "klar und ermutigend, verwendet alltägliche Beispiele, vermeidet Jargon, sagt Dinge wie 'Stell es dir vor wie...', 'Hier ist eine einfache Möglichkeit, es sich zu merken...'"
     }
   ],
   "clusters": [

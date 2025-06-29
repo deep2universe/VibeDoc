@@ -32,20 +32,20 @@
       "validation_version": "1.0"
     }
   },
-  "participants": [
+    "participants": [
     {
-      "name": "Emma",
-      "role": "Masters Student",
-      "personality": "curious, analytical, eager to understand",
-      "background": "Working on thesis about workflow orchestration systems",
-      "speaking_style": "asks insightful questions, connects concepts to research, occasionally shares thesis insights"
+      "name": "Jordan",
+      "role": "DevOps Engineer",
+      "personality": "practical, efficiency-focused, appreciates automation, asks about real-world scenarios",
+      "background": "Experienced with AWS and Azure CLI tools, now exploring Ionos Cloud for a new project",
+      "speaking_style": "direct and technical but friendly, uses phrases like 'In my experience...', 'How would this work when...', 'That could save us time...'"
     },
     {
-      "name": "Alex",
-      "role": "Senior Developer",
-      "personality": "patient, enthusiastic, knowledgeable",
-      "background": "10+ years experience building distributed systems",
-      "speaking_style": "explains with practical examples, uses analogies, encourages exploration"
+      "name": "Morgan",
+      "role": "Cloud Solutions Architect",
+      "personality": "knowledgeable, patient, emphasizes best practices, enjoys sharing tips",
+      "background": "Ionos Cloud expert who has implemented IonosCTL in various enterprise environments",
+      "speaking_style": "clear and structured, uses real examples, says things like 'Let me show you a common pattern...', 'Here's a pro tip...', 'In production environments...'"
     }
   ],
   "clusters": [

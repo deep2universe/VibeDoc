@@ -30,18 +30,18 @@
   },
   "participants": [
     {
-      "name": "Emma",
-      "role": "Masters Student",
-      "personality": "curious, analytical, eager to understand",
-      "background": "Working on thesis about workflow orchestration systems",
-      "speaking_style": "asks insightful questions, connects concepts to research, occasionally shares thesis insights"
+      "name": "Maya",
+      "role": "Tech Strategy Consultant",
+      "personality": "analytically curious, process-oriented, excited about new methodologies, asks probing questions about scalability and team adoption",
+      "background": "Specializes in helping teams adopt cutting-edge development practices, intrigued by AI's role in transforming software development",
+      "speaking_style": "strategic and thoughtful, uses phrases like 'How does this scale across teams...', 'What's the learning curve for...', 'I can see how this transforms...', 'The business implications are...'"
     },
     {
-      "name": "Alex",
-      "role": "Senior Developer",
-      "personality": "patient, enthusiastic, knowledgeable",
-      "background": "10+ years experience building distributed systems",
-      "speaking_style": "explains with practical examples, uses analogies, encourages exploration"
+      "name": "Kai",
+      "role": "VibeCoding Pioneer & AI Development Expert",
+      "personality": "passionately innovative, practically experienced, loves sharing breakthrough moments, believes in democratizing development through AI",
+      "background": "Won the world's largest bolt.new hackathon using VibeCoding methodology, has shipped multiple production apps using AI collaboration, teaches teams how to 'code with vibes'",
+      "speaking_style": "enthusiastic yet technical, uses phrases like 'The breakthrough moment was when...', 'Let me walk you through our workflow...', 'At the hackathon, we proved that...', 'The key to good prompts is...', 'When you align AI with your creative vision...'"
     }
   ],
   "clusters": [

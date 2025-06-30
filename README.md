@@ -1,7 +1,6 @@
-<div align="center">
-  <img src="https://vibedoc.s3.eu-central-1.amazonaws.com/black_circle_360x360.png" alt="VibeDoc Logo" width="120" height="120">
+
   
-  # VibeDoc
+  # ![](public/images/Logo_white_bg.png)
   
   **Transform your GitHub repositories into beautiful documentation, engaging videos, and immersive podcasts using AI**
   
@@ -12,7 +11,7 @@
   [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
   
   [🚀 Live Demo](https://vibedoc.netlify.app) • [📖 Documentation](https://github.com/deep2universe/VibeDoc) • [🎥 YouTube Channel](https://www.youtube.com/@Vibe_Doc)
-</div>
+
 
 ---
 

@@ -122,6 +122,28 @@ export const tutorials: Tutorial[] = [
       { id: 'quality_assurance', title: 'Quality Assurance', filename: '09_quality_assurance_.md' },
       { id: 'system_documentation', title: 'System Documentation', filename: '10_system_documentation_.md' }
     ]
+  },
+  {
+    id: 'elevenlabs/elevenlabs-python',
+    name: 'elevenlabs-python',
+    owner: 'elevenlabs',
+    description: 'Official Python Library for ElevenLabs API',
+    lastUpdated: new Date().toISOString(),
+    language: 'Python',
+    stars: 0,
+    url: 'https://github.com/elevenlabs/elevenlabs-python',
+    docPath: '/output/elevenlabs-python_en',
+    chapters: [
+      { id: 'elevenlabs_client', title: 'ElevenLabs Client', filename: '01_elevenlabs_client_.md' },
+      { id: 'voice_management', title: 'Voice Management', filename: '02_voice_management_.md' },
+      { id: 'models_management', title: 'Models Management', filename: '03_models_management_.md' },
+      { id: 'text_to_speech_conversion', title: 'Text-to-Speech Conversion', filename: '04_text_to_speech_conversion_.md' },
+      { id: 'audio_processing', title: 'Audio Processing', filename: '05_audio_processing_.md' },
+      { id: 'speech_to_speech_conversion', title: 'Speech-to-Speech Conversion', filename: '06_speech_to_speech_conversion_.md' },
+      { id: 'speech_to_text_conversion', title: 'Speech-to-Text Conversion', filename: '07_speech_to_text_conversion_.md' },
+      { id: 'conversational_ai', title: 'Conversational AI', filename: '08_conversational_ai_.md' },
+      { id: 'webhooks_system', title: 'Webhooks System', filename: '09_webhooks_system_.md' }
+    ]
   }
 ];
 

@@ -116,7 +116,7 @@ export const DialogueBubble: React.FC<Props> = ({ dialogue, clusterId, isFirstPa
               <textarea
                 value={editedText}
                 onChange={(e) => setEditedText(e.target.value)}
-                className="w-full p-3 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-600 rounded-lg font-mono text-sm resize-none custom-scrollbar"
+                className="w-full p-3 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-600 rounded-lg font-mono text-sm resize-none custom-scrollbar text-gray-900 dark:text-white"
                 rows={6}
               />
               <div className="flex gap-2">
@@ -166,7 +166,7 @@ export const DialogueBubble: React.FC<Props> = ({ dialogue, clusterId, isFirstPa
                         value={aiPrompt}
                         onChange={(e) => setAiPrompt(e.target.value)}
                         placeholder="Describe how you want to improve this dialogue..."
-                        className="w-full resize-none rounded-xl border border-gray-300/50 dark:border-gray-600/50 bg-white/80 dark:bg-gray-800/80 px-6 py-4 pr-16 font-mono text-sm placeholder-gray-500 dark:placeholder-gray-400 focus:border-blue-500/70 focus:outline-none focus:ring-2 focus:ring-blue-500/30 transition-all duration-300 backdrop-blur-sm custom-scrollbar"
+                        className="w-full resize-none rounded-xl border border-gray-300/50 dark:border-gray-600/50 bg-white/80 dark:bg-gray-800/80 px-6 py-4 pr-16 font-mono text-sm placeholder-gray-500 dark:placeholder-gray-400 focus:border-blue-500/70 focus:outline-none focus:ring-2 focus:ring-blue-500/30 transition-all duration-300 backdrop-blur-sm custom-scrollbar text-gray-900 dark:text-white"
                         rows={3}
                         style={{ minHeight: '80px' }}
                       />

@@ -32,6 +32,11 @@ const podcastVideos = [
     id: 'fEjkG5_hWJE',
     title: 'Vibe Coding (EN) - The Future of Intuitive Development',
     repoUrl: 'https://github.com/cpjet64/vibecoding'
+  },
+  {
+    id: 'GAUdYjCV3Mc',
+    title: 'ElevenLabs Python - Official Python Library for ElevenLabs API',
+    repoUrl: 'https://github.com/elevenlabs/elevenlabs-python'
   }
 ];
 

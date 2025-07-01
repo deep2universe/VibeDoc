@@ -238,9 +238,9 @@ export const useAppStore = create<AppState>()(
       sidebarWidth: 300,
       setSidebarWidth: (width) => set({ sidebarWidth: width }),
       
-      // API Key Prompt
+      // API Key Prompt - CHANGED: Set to true by default to disable the prompt
       showApiKeyPrompt: false,
-      doNotShowApiKeyPromptAgain: false,
+      doNotShowApiKeyPromptAgain: true,
       setShowApiKeyPrompt: (show) => set({ showApiKeyPrompt: show }),
       setDoNotShowApiKeyPromptAgain: (doNotShow) => set({ doNotShowApiKeyPromptAgain: doNotShow }),
     }),

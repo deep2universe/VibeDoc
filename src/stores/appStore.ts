@@ -131,12 +131,6 @@ interface AppState {
   // UI State
   sidebarWidth: number;
   setSidebarWidth: (width: number) => void;
-  
-  // API Key Prompt
-  showApiKeyPrompt: boolean;
-  doNotShowApiKeyPromptAgain: boolean;
-  setShowApiKeyPrompt: (show: boolean) => void;
-  setDoNotShowApiKeyPromptAgain: (doNotShow: boolean) => void;
 }
 
 export const useAppStore = create<AppState>()(
@@ -237,12 +231,6 @@ export const useAppStore = create<AppState>()(
       // UI State
       sidebarWidth: 300,
       setSidebarWidth: (width) => set({ sidebarWidth: width }),
-      
-      // API Key Prompt - CHANGED: Set to true by default to disable the prompt
-      showApiKeyPrompt: false,
-      doNotShowApiKeyPromptAgain: true,
-      setShowApiKeyPrompt: (show) => set({ showApiKeyPrompt: show }),
-      setDoNotShowApiKeyPromptAgain: (doNotShow) => set({ doNotShowApiKeyPromptAgain: doNotShow }),
     }),
     {
       name: 'vibedoc-store',
@@ -250,7 +238,6 @@ export const useAppStore = create<AppState>()(
         theme: state.theme,
         viewMode: state.viewMode,
         sidebarWidth: state.sidebarWidth,
-        doNotShowApiKeyPromptAgain: state.doNotShowApiKeyPromptAgain,
       }),
     }
   )

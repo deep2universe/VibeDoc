@@ -44,11 +44,7 @@ export const HomePage: React.FC = () => {
   const [repoUrl, setRepoUrl] = useState('');
   const [isValidUrl, setIsValidUrl] = useState(true);
   const navigate = useNavigate();
-  const { 
-    setRepository, 
-    setShowApiKeyPrompt, 
-    doNotShowApiKeyPromptAgain 
-  } = useAppStore();
+  const { setRepository } = useAppStore();
   const { theme } = useTheme();
 
   const validateGithubUrl = (url: string): boolean => {
@@ -96,12 +92,8 @@ export const HomePage: React.FC = () => {
             setRepository(repo);
           }
           
-          // Show API key prompt if user hasn't opted out
-          if (!doNotShowApiKeyPromptAgain) {
-            setShowApiKeyPrompt(true);
-          } else {
-            navigate(`/docs/${parsed.owner}/${parsed.name}`);
-          }
+          // Navigate directly to the documentation page
+          navigate(`/docs/${parsed.owner}/${parsed.name}`);
         }
       }
     }
@@ -109,19 +101,8 @@ export const HomePage: React.FC = () => {
 
   const handleRepoClick = (repo: Repository) => {
     setRepository(repo);
-    
-    // Show API key prompt if user hasn't opted out
-    if (!doNotShowApiKeyPromptAgain) {
-      setShowApiKeyPrompt(true);
-      // We'll navigate to the docs page after the prompt is closed
-      setTimeout(() => {
-        if (!doNotShowApiKeyPromptAgain) {
-          navigate(`/docs/${repo.owner}/${repo.name}`);
-        }
-      }, 300);
-    } else {
-      navigate(`/docs/${repo.owner}/${repo.name}`);
-    }
+    // Navigate directly to the documentation page
+    navigate(`/docs/${repo.owner}/${repo.name}`);
   };
 
   const formatLastUpdated = (timestamp: string): string => {

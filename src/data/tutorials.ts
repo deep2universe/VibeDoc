@@ -144,6 +144,29 @@ export const tutorials: Tutorial[] = [
       { id: 'conversational_ai', title: 'Conversational AI', filename: '08_conversational_ai_.md' },
       { id: 'webhooks_system', title: 'Webhooks System', filename: '09_webhooks_system_.md' }
     ]
+  },
+  {
+    id: 'The-Pocket/PocketFlow',
+    name: 'PocketFlow',
+    owner: 'The-Pocket',
+    description: 'A 100-line minimalist LLM framework',
+    lastUpdated: new Date().toISOString(),
+    language: 'Python',
+    stars: 0,
+    url: 'https://github.com/The-Pocket/PocketFlow',
+    docPath: '/output/PocketFlow_en',
+    chapters: [
+      { id: 'node', title: 'Node', filename: '01_node_.md' },
+      { id: 'flow', title: 'Flow', filename: '02_flow_.md' },
+      { id: 'communication_shared_store', title: 'Communication (Shared Store)', filename: '03_communication__shared_store__.md' },
+      { id: 'batch_processing', title: 'Batch Processing', filename: '04_batch_processing_.md' },
+      { id: 'async_processing', title: 'Async Processing', filename: '05_async_processing_.md' },
+      { id: 'parallel_processing', title: 'Parallel Processing', filename: '06_parallel_processing_.md' },
+      { id: 'workflow_pattern', title: 'Workflow Pattern', filename: '07_workflow_pattern_.md' },
+      { id: 'agent_pattern', title: 'Agent Pattern', filename: '08_agent_pattern_.md' },
+      { id: 'rag_retrieval_augmented_generation', title: 'RAG (Retrieval Augmented Generation)', filename: '09_rag__retrieval_augmented_generation__.md' },
+      { id: 'map_reduce_pattern', title: 'Map Reduce Pattern', filename: '10_map_reduce_pattern_.md' }
+    ]
   }
 ];
 

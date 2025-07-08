@@ -37,6 +37,11 @@ const podcastVideos = [
     id: 'GAUdYjCV3Mc',
     title: 'ElevenLabs Python - Official Python Library for ElevenLabs API',
     repoUrl: 'https://github.com/elevenlabs/elevenlabs-python'
+  },
+  {
+    id: 'kxkhZCtTWek',
+    title: 'Pocket Flow is a 100-line minimalist LLM framework',
+    repoUrl: 'https://github.com/The-Pocket/PocketFlow'
   }
 ];
 

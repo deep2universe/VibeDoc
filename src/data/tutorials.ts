@@ -167,6 +167,29 @@ export const tutorials: Tutorial[] = [
       { id: 'rag_retrieval_augmented_generation', title: 'RAG (Retrieval Augmented Generation)', filename: '09_rag__retrieval_augmented_generation__.md' },
       { id: 'map_reduce_pattern', title: 'Map Reduce Pattern', filename: '10_map_reduce_pattern_.md' }
     ]
+  },
+  {
+    id: 'microsoft/markitdown',
+    name: 'markitdown',
+    owner: 'microsoft',
+    description: 'A lightweight Python utility for converting various files to Markdown',
+    lastUpdated: new Date().toISOString(),
+    language: 'Python',
+    stars: 0,
+    url: 'https://github.com/microsoft/markitdown',
+    docPath: '/output/markitdown_en',
+    chapters: [
+      { id: 'markitdown_class', title: 'MarkItDown Class', filename: '01_markitdown_class_.md' },
+      { id: 'command_line_interface', title: 'Command Line Interface', filename: '02_command_line_interface_.md' },
+      { id: 'streaminfo', title: 'StreamInfo', filename: '03_streaminfo_.md' },
+      { id: 'documentconverter', title: 'DocumentConverter', filename: '04_documentconverter_.md' },
+      { id: 'format_specific_converters', title: 'Format Specific Converters', filename: '05_format_specific_converters_.md' },
+      { id: 'plugin_system', title: 'Plugin System', filename: '06_plugin_system_.md' },
+      { id: 'uri_processing', title: 'URI Processing', filename: '07_uri_processing_.md' },
+      { id: 'llm_integration', title: 'LLM Integration', filename: '08_llm_integration_.md' },
+      { id: 'mcp_server', title: 'MCP Server', filename: '09_mcp_server_.md' },
+      { id: 'exception_handling', title: 'Exception Handling', filename: '10_exception_handling_.md' }
+    ]
   }
 ];
 

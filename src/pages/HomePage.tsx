@@ -42,6 +42,11 @@ const podcastVideos = [
     id: 'kxkhZCtTWek',
     title: 'Pocket Flow is a 100-line minimalist LLM framework',
     repoUrl: 'https://github.com/The-Pocket/PocketFlow'
+  },
+  {
+    id: 'sSvI9OKUysk',
+    title: 'MarkItDown - Lightweight Python utility for converting files to Markdown',
+    repoUrl: 'https://github.com/microsoft/markitdown'
   }
 ];
 

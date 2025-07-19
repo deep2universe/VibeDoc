@@ -169,7 +169,7 @@ export const tutorials: Tutorial[] = [
     ]
   },
   {
-    id: 'microsoft/markitdown',
+    id: 'microsoft/MarkItDown',
     name: 'markitdown',
     owner: 'microsoft',
     description: 'A lightweight Python utility for converting various files to Markdown',

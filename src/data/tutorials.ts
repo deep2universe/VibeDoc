@@ -169,8 +169,8 @@ export const tutorials: Tutorial[] = [
     ]
   },
   {
-    id: 'microsoft/MarkItDown',
-    name: 'markitdown',
+    id: 'microsoft/markitdown',
+    name: 'MarkItDown',
     owner: 'microsoft',
     description: 'A lightweight Python utility for converting various files to Markdown',
     lastUpdated: new Date().toISOString(),

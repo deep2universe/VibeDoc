@@ -52,6 +52,11 @@ const podcastVideos = [
     id: 'GFFeTgPV5kE',
     title: 'Model Context Protocol specification',
     repoUrl: 'https://github.com/modelcontextprotocol/modelcontextprotocol'
+  },
+  {
+    id: 'rIg2CGWNCrs',
+    title: 'Python SDK for Model Context Protocol - Build powerful LLM integrations',
+    repoUrl: 'https://github.com/modelcontextprotocol/python-sdk'
   }
 ];
 

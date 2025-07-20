@@ -212,6 +212,27 @@ export const tutorials: Tutorial[] = [
       { id: 'sampling', title: 'Sampling', filename: '08_sampling_.md' },
       { id: 'elicitation', title: 'Elicitation', filename: '09_elicitation_.md' }
     ]
+  },
+  {
+    id: 'modelcontextprotocol/python-sdk',
+    name: 'python-sdk',
+    owner: 'modelcontextprotocol',
+    description: 'Python SDK for Model Context Protocol - Build powerful integrations between LLM applications and external data sources',
+    lastUpdated: new Date().toISOString(),
+    language: 'Python',
+    stars: 0,
+    url: 'https://github.com/modelcontextprotocol/python-sdk',
+    docPath: '/output/python-sdk_en',
+    chapters: [
+      { id: 'client_session', title: 'Client Session', filename: '01_client_session_.md' },
+      { id: 'fastmcp_server', title: 'FastMCP Server', filename: '02_fastmcp_server_.md' },
+      { id: 'tool_management', title: 'Tool Management', filename: '03_tool_management_.md' },
+      { id: 'resource_management', title: 'Resource Management', filename: '04_resource_management_.md' },
+      { id: 'prompt_management', title: 'Prompt Management', filename: '05_prompt_management_.md' },
+      { id: 'elicitation_framework', title: 'Elicitation Framework', filename: '06_elicitation_framework_.md' },
+      { id: 'transport_mechanisms', title: 'Transport Mechanisms', filename: '07_transport_mechanisms_.md' },
+      { id: 'authentication_and_authorization', title: 'Authentication and Authorization', filename: '08_authentication_and_authorization_.md' }
+    ]
   }
 ];
 

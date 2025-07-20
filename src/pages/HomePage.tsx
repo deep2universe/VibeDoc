@@ -349,7 +349,7 @@ flowchart TD
                 {/* Header */}
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex-1 min-w-0">
-                    <h3 className="font-mono font-semibold text-lg text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                    <h3 className="font-mono font-semibold text-lg text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors break-words">
                       {repo.owner}/{repo.name}
                     </h3>
                     <p className="text-sm text-gray-600 dark:text-gray-400 mt-1 line-clamp-2 font-mono">

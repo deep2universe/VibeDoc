@@ -190,6 +190,28 @@ export const tutorials: Tutorial[] = [
       { id: 'mcp_server', title: 'MCP Server', filename: '09_mcp_server_.md' },
       { id: 'exception_handling', title: 'Exception Handling', filename: '10_exception_handling_.md' }
     ]
+  },
+  {
+    id: 'modelcontextprotocol/modelcontextprotocol',
+    name: 'modelcontextprotocol',
+    owner: 'modelcontextprotocol',
+    description: 'An open protocol that enables seamless integration between LLM applications and external data sources and tools.',
+    lastUpdated: new Date().toISOString(),
+    language: 'TypeScript',
+    stars: 0,
+    url: 'https://github.com/modelcontextprotocol/modelcontextprotocol',
+    docPath: '/output/modelcontextprotocol_en',
+    chapters: [
+      { id: 'protocol_architecture', title: 'Protocol Architecture', filename: '01_protocol_architecture_.md' },
+      { id: 'message_system', title: 'Message System', filename: '02_message_system_.md' },
+      { id: 'lifecycle_management', title: 'Lifecycle Management', filename: '03_lifecycle_management_.md' },
+      { id: 'roots', title: 'Roots', filename: '04_roots_.md' },
+      { id: 'resources', title: 'Resources', filename: '05_resources_.md' },
+      { id: 'tools', title: 'Tools', filename: '06_tools_.md' },
+      { id: 'prompts', title: 'Prompts', filename: '07_prompts_.md' },
+      { id: 'sampling', title: 'Sampling', filename: '08_sampling_.md' },
+      { id: 'elicitation', title: 'Elicitation', filename: '09_elicitation_.md' }
+    ]
   }
 ];
 

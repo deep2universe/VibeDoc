@@ -47,7 +47,7 @@ export const PodcastScriptEditorPage: React.FC = () => {
           try {
             // Try to find any podcast JSON file in this directory
             // We'll need to try common podcast IDs or scan the directory
-            const commonIds = ['19e70ba6', '9548d6fc', '4be32f81', '0fe1a4dc', '52e6408d', '610d32cf', 'f11bc543', '81ba497e'];
+            const commonIds = ['19e70ba6', '9548d6fc', '4be32f81', '0fe1a4dc', '52e6408d', '610d32cf', 'f11bc543', '81ba497e', '763f11a5'];
             
             for (const id of commonIds) {
               try {

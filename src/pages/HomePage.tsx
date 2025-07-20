@@ -47,6 +47,11 @@ const podcastVideos = [
     id: 'sSvI9OKUysk',
     title: 'MarkItDown - Lightweight Python utility for converting files to Markdown',
     repoUrl: 'https://github.com/microsoft/markitdown'
+  },
+  {
+    id: 'GFFeTgPV5kE',
+    title: 'Model Context Protocol specification',
+    repoUrl: 'https://github.com/modelcontextprotocol/modelcontextprotocol'
   }
 ];
 
